@@ -3,7 +3,6 @@ import os
 from moviepy.editor import *
 import json
 from lxml import etree
-from jsonpath import jsonpath
 
 bv = input("input the bv number >> ")
 
@@ -29,13 +28,11 @@ print("==>正获取音频地址...")
 a_url = src_dict['data']['dash']['audio'][0]['backup_url'][0]
 
 res = requests.get(a_url, headers = headers)
-
 with open("a.mp3", "wb") as f:
     print("==>正写入音频...")
     f.write(res.content)
 
 res = requests.get(v_url, headers = headers)
-
 with open("v.mp4", "wb") as f:
     print("==>正写入视频...")
     f.write(res.content)
