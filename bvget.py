@@ -1,8 +1,5 @@
-#! /home/aurora/Desktop/code/python/.venv/bin/python
-
 import requests
 import os
-from moviepy.editor import *
 import json
 from lxml import etree
 
