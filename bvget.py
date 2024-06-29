@@ -1,3 +1,5 @@
+#! /home/aurora/Desktop/code/python/.venv/bin/python
+
 import requests
 import os
 from moviepy.editor import *
@@ -37,9 +39,6 @@ with open("v.mp4", "wb") as f:
     print("==>正写入视频...")
     f.write(res.content)
 
-vd = VideoFileClip("v.mp4")
-ad = AudioFileClip("a.mp3")
-
 UserName = os.environ['USER']
 path = f"/home/{UserName}/Desktop"
 s = input("input absolute path for the outputfile >> ")
@@ -47,9 +46,8 @@ if s != "":
     path = s
 path = path + f"/{bv}.mp4"
 
-outputfile = vd.set_audio(ad)
 print("==>正写入合成的视频文件...")
-outputfile.write_videofile(path) 
+os.system(f"ffmpeg -i v.mp4 -i a.mp3 -c:v copy -c:a aac -strict experimental {path}")
 
 print("==>正删除临时文件...")
 os.system("rm a.mp3 v.mp4")
